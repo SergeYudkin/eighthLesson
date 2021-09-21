@@ -4,49 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:orientation="vertical">
 
 
-
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Назад"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-        <Button
-            android:id="@+id/buttonMain"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Задачи"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-        <Button
-            android:id="@+id/buttonFavorite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="favorite"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-        <Button
-            android:id="@+id/buttonSettings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="settings"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
