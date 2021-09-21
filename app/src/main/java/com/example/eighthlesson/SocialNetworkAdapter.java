@@ -3,28 +3,35 @@ package com.example.eighthlesson;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SocialNetworkAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdapter.MyViewHolder> {
+
+    private String[] dataSource;
 
     public SocialNetworkAdapter(String[] dataSource) {
         this.dataSource = dataSource;
     }
 
+    public  void  setData (String[] dataSource){
+        this.dataSource = dataSource;
+    }
 
-    private String[] dataSource;
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
-        return null;
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        holder.textView.setText(dataSource[position]);
 
     }
 
@@ -33,9 +40,10 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<RecyclerView.View
         return dataSource.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView textView;
+        private ImageView imageView;
 
         public TextView getTextView() {
             return textView;
@@ -45,9 +53,10 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<RecyclerView.View
             this.textView = textView;
         }
 
-        public ViewHolder(View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView;
+            textView = itemView.findViewById(R.id.textView);
+            imageView = itemView.findViewById(R.id.imageView);
         }
     }
 }
