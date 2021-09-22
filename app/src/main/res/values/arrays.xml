@@ -9,42 +9,36 @@
         <item>Четыре</item>
         <item>Пять</item>
         <item>Шесть</item>
-        <item>Семь</item>
-        <item>Восемь</item>
-        <item>Девять</item>
-        <item>Десять</item>
-        <item>Одинадцать</item>
-        <item>Двенадцать</item>
-        <item>Тринадцать</item>
-        <item>Четырнадцать</item>
-        <item>Пятьнадцать</item>
-        <item>Шестьнадцать</item>
-        <item>Семьнадцать</item>
-        <item>Восемьнадцать</item>
-        <item>Девятьнадцать</item>
-        <item>Двадцать</item>
-
-     <item>Один</item>
-     <item>Два</item>
-     <item>Три</item>
-     <item>Четыре</item>
-     <item>Пять</item>
-     <item>Шесть</item>
-     <item>Семь</item>
-     <item>Восемь</item>
-     <item>Девять</item>
-     <item>Десять</item>
-     <item>Одинадцать</item>
-     <item>Двенадцать</item>
-     <item>Тринадцать</item>
-     <item>Четырнадцать</item>
-     <item>Пятьнадцать</item>
-     <item>Шестьнадцать</item>
-     <item>Семьнадцать</item>
-     <item>Восемьнадцать</item>
-     <item>Девятьнадцать</item>
-     <item>Двадцать</item>
-
     </string-array>
+
+  <string-array name="titles">
+   <item>картинка 1</item>
+   <item>картинка 2</item>
+   <item>картинка 3</item>
+   <item>картинка 4</item>
+   <item>картинка 5</item>
+   <item>картинка 6</item>
+   <item>картинка 7</item>
+  </string-array>
+
+   <string-array name="description">
+    <item>описание картинки 1</item>
+    <item>описание картинки 2</item>
+    <item>описание картинки 3</item>
+    <item>описание картинки 4</item>
+    <item>описание картинки 5</item>
+    <item>описание картинки 6</item>
+    <item>описание картинки 7</item>
+   </string-array>
+
+   <array name="pictures">
+    <item>@drawable/pic1</item>
+    <item>@drawable/pic2</item>
+    <item>@drawable/pic3</item>
+    <item>@drawable/pic4</item>
+    <item>@drawable/pic5</item>
+    <item>@drawable/pic6</item>
+    <item>@drawable/pic7</item>
+   </array>
     
 </resources>

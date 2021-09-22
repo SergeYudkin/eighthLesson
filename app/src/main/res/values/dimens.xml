@@ -6,4 +6,6 @@
     <dimen name="textSizeMain">18sp</dimen>
     <dimen name="textSizeFavorite">35sp</dimen>
     <dimen name="textSizeItem">30sp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="image_height">350dp</dimen>
 </resources>
