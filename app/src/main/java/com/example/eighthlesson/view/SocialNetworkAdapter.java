@@ -1,4 +1,4 @@
-package com.example.eighthlesson;
+package com.example.eighthlesson.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,9 +6,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.eighthlesson.R;
+import com.example.eighthlesson.model.CardSource;
 
 public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdapter.MyViewHolder> {
 
@@ -57,9 +58,6 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
          CheckBox like;
 
 
-    //    public TextView getTextView() {return textView;}
-
-       // public void setTextView(TextView textView) {this.textView = textView;}
 
         public MyViewHolder(View itemView) {
             super(itemView);

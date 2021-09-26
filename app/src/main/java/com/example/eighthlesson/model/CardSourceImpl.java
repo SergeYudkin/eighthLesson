@@ -1,15 +1,17 @@
-package com.example.eighthlesson;
+package com.example.eighthlesson.model;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+
+import com.example.eighthlesson.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardSourceImpl implements CardSource {
 
-    private List<CardData> dataSource;
-    private Resources resources;
+    private final List<CardData> dataSource;
+    private final Resources resources;
 
     public CardSourceImpl(Resources resources) {
         dataSource = new ArrayList<>();

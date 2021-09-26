@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
+import com.example.eighthlesson.view.SocialNetworkFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initToolbar();
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,SocialNetworkFragment.newInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, SocialNetworkFragment.newInstance()).commit();
         }
 
     }

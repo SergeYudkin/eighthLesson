@@ -1,4 +1,6 @@
-package com.example.eighthlesson;
+package com.example.eighthlesson.model;
+
+import com.example.eighthlesson.model.CardData;
 
 public interface CardSource {
 

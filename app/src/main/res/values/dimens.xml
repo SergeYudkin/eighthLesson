@@ -8,4 +8,12 @@
     <dimen name="textSizeItem">30sp</dimen>
     <dimen name="padding">16dp</dimen>
     <dimen name="image_height">0dp</dimen>
+    <dimen name="width_imageView">0dp</dimen>
+    <dimen name="margin_cardView">12dp</dimen>
+    <dimen name="card_radius_cardView">15dp</dimen>
+    <dimen name="cardElevation_cardView">50dp</dimen>
+    <dimen name="layout_height">250dp</dimen>
+    <dimen name="textView_width">252dp</dimen>
+    <dimen name="textSize_tasks">25sp</dimen>
+    <dimen name="height_separator">5dp</dimen>
 </resources>

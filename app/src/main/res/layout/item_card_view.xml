@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="50dp">
+    android:layout_margin="@dimen/margin_cardView"
+    app:cardCornerRadius="@dimen/card_radius_cardView"
+    app:cardElevation="@dimen/cardElevation_cardView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,19 +14,17 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_weight="0"
+            android:layout_width="@dimen/width_imageView"
             android:layout_height="@dimen/image_height"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/layout_height"
             android:layout_weight="1"
             android:background="@drawable/doski"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/like"
@@ -34,20 +32,28 @@
                 android:layout_height="wrap_content"
                 android:button="@android:drawable/star_big_off" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textSizeItem" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="252dp"
-                android:layout_height="wrap_content"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeItem" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="@dimen/textView_width"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSize_tasks" />
+            </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

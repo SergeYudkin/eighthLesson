@@ -1,4 +1,4 @@
-package com.example.eighthlesson;
+package com.example.eighthlesson.view;
 
 import android.view.View;
 
