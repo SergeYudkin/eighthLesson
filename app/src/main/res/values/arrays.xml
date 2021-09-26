@@ -12,19 +12,23 @@
     </string-array>
 
   <string-array name="titles">
-   <item>картинка 1</item>
-   <item>картинка 2</item>
-   <item>картинка 3</item>
-   <item>картинка 4</item>
-   <item>картинка 5</item>
-   <item>картинка 6</item>
-   <item>картинка 7</item>
+   <item>Дом</item>
+   <item>Двор</item>
+   <item>Автомобиль</item>
+   <item>Квартира</item>
+   <item>Работа</item>
+   <item>Учёба</item>
+   <item>Жена</item>
   </string-array>
 
    <string-array name="description">
-    <item>описание картинки 1</item>
-    <item>описание картинки 2</item>
-    <item>описание картинки 3</item>
+    <item>Укрепить фундамент
+    Зашить франтон</item>
+    <item>Доложить брусчатку
+    Накрыть на зиму детскую площадку</item>
+    <item>Поменять свечи
+    Поменять масло
+    Поменьтб ВВ провода</item>
     <item>описание картинки 4</item>
     <item>описание картинки 5</item>
     <item>описание картинки 6</item>
