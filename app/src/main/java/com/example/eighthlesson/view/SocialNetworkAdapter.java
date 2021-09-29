@@ -1,11 +1,16 @@
 package com.example.eighthlesson.view;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eighthlesson.R;
@@ -15,12 +20,16 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
 
     private CardSource dataSource;
 
-    public SocialNetworkAdapter(CardSource dataSource) {
+    public SocialNetworkAdapter(CardSource dataSource, Fragment fragment) {
 
         this.dataSource = dataSource;
+        this.fragment = fragment;
     }
-
     private MyOnClickListener listener;
+
+    private Fragment fragment;
+    private int menuContextClickPosition;
+
     public void setOnMyOnClickListener(MyOnClickListener listener){
         this.listener = listener;
     }
@@ -50,12 +59,17 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
         return dataSource.size();
     }
 
+    public int getMenuContextClickPosition() {
+        return menuContextClickPosition;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
          TextView title;
         TextView description;
          ImageView imageView;
          CheckBox like;
+         CardView cardView;
 
 
 
@@ -65,11 +79,24 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
             title = itemView.findViewById(R.id.title);
             imageView = itemView.findViewById(R.id.imageView);
             like = itemView.findViewById(R.id.like);
+            cardView = itemView.findViewById(R.id.car_view);
 
+
+
+            fragment.registerForContextMenu(cardView); // контекстное меню привязяно к картинке, в этом случае.
             imageView.setOnClickListener(new View.OnClickListener(){
 
                 public void onClick(View v){
                     listener.onMyClick(v,getAdapterPosition());
+                }
+            });
+            cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public boolean onLongClick(View v) {
+                    menuContextClickPosition = getAdapterPosition();
+                    cardView.showContextMenu(100,100); // координаты выпадающего меню, если не задать координаты то выпадает по середине экрана.
+                    return true;
                 }
             });
         }

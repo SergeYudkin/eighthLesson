@@ -25,7 +25,32 @@ public class CardSourceImpl implements CardSource {
 
     @Override
     public CardData getCardData(int position) {
+
         return dataSource.get(position);
+    }
+
+    @Override
+    public void deleteCardData(int position) {
+
+        dataSource.remove(position);
+    }
+
+    @Override
+    public void updateCardData(int position, CardData newCardData) {
+        dataSource.set(position,newCardData);
+    }
+
+    @Override
+    public void addCardData(CardData newCardData) {
+
+        dataSource.add(0,newCardData); // индекс новой карточки ( по умолчанию появляется последней)
+
+    }
+
+    @Override
+    public void clearCardData() {
+
+        dataSource.clear();
     }
 
     public CardSourceImpl init(){

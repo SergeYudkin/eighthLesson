@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">eighthLesson</string>
     <string name="add">Добавить</string>
+    <string name="text_clear">Очистить</string>
+    <string name="delete">Удалить</string>
+    <string name="update">Редактировать</string>
 </resources>
