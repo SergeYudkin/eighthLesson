@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import com.example.eighthlesson.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CardSourceImpl implements CardSource {
@@ -43,7 +44,7 @@ public class CardSourceImpl implements CardSource {
     @Override
     public void addCardData(CardData newCardData) {
 
-        dataSource.add(0,newCardData); // индекс новой карточки ( по умолчанию появляется последней)
+        dataSource.add(newCardData); // индекс новой карточки индекс ставится перед cardData ( по умолчанию появляется последней)
 
     }
 
@@ -65,7 +66,8 @@ public class CardSourceImpl implements CardSource {
             pictures[i] = typedArray.getResourceId(i,-1);
         }
         for (int i = 0; i <titles.length; i++){
-            dataSource.add(new CardData(titles[i],description[i],pictures[i],false));
+            dataSource.add(new CardData(titles[i],description[i],pictures[i],false,
+                    Calendar.getInstance().getTime()));
 
         }
         return this;
