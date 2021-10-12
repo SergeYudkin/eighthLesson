@@ -4,6 +4,7 @@ import com.example.eighthlesson.model.CardData;
 
 public interface CardSource {
 
+    CardSource init(CardSourceResponse cardSourceResponse);
     int size();
 
     CardData getCardData(int position);

@@ -62,7 +62,7 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder,int position) {
 
 
-        holder.title.setText(dataSource.getCardData(position).getTitle("Обновили " + position));
+        holder.title.setText(dataSource.getCardData(position).getTitle());
         holder.description.setText(dataSource.getCardData(position).getDescription());
         holder.imageView.setImageResource(dataSource.getCardData(position).getPicture());
         holder.like.setChecked(dataSource.getCardData(position).isLike());
@@ -115,7 +115,7 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
         }
 
         public void setData (CardData cardData){
-            title.setText(cardData.getTitle("Хз"));
+            title.setText(cardData.getTitle());
             data.setText(cardData.getData().toString());
             description.setText(cardData.getDescription());
             like.setChecked(cardData.isLike());

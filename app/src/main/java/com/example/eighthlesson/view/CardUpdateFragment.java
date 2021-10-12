@@ -57,7 +57,7 @@ public class CardUpdateFragment extends Fragment {
 
     private void populateView(){
 
-        title.setText(cardData.getTitle("Хз"));
+        title.setText(cardData.getTitle());
         description.setText(cardData.getDescription());
         initDatePicker(cardData.getData());
     }

@@ -19,6 +19,8 @@ public class CardSourceImpl implements CardSource {
         this.resources = resources;
     }
 
+
+
     @Override
     public int size() {
         return dataSource.size();
@@ -54,7 +56,7 @@ public class CardSourceImpl implements CardSource {
         dataSource.clear();
     }
 
-    public CardSourceImpl init(){
+    public CardSourceImpl init(CardSourceResponse cardSourceResponse){
 
 
         String[] titles = resources.getStringArray(R.array.titles);
@@ -69,6 +71,9 @@ public class CardSourceImpl implements CardSource {
             dataSource.add(new CardData(titles[i],description[i],pictures[i],false,
                     Calendar.getInstance().getTime()));
 
+        }
+        if (cardSourceResponse !=null){
+            cardSourceResponse.initialized(this);
         }
         return this;
     }

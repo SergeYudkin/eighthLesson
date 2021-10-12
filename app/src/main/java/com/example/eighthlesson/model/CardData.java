@@ -10,7 +10,15 @@ import java.util.Date;
 public class CardData implements Parcelable {
 
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private String title;
     private String description;
     private int picture;
@@ -53,7 +61,7 @@ public class CardData implements Parcelable {
         }
     };
 
-    public String getTitle(String s) {
+    public String getTitle() {
         return title;
     }
 
