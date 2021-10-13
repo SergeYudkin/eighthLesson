@@ -25,6 +25,20 @@ public class CardData implements Parcelable {
     private boolean like;
     private Date data;
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
+    }
+
+
+
 
     public Date getData() {
         return data;

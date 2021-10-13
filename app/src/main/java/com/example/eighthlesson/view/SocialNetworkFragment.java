@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -24,11 +23,11 @@ import com.example.eighthlesson.Navigation;
 import com.example.eighthlesson.R;
 import com.example.eighthlesson.model.CardData;
 import com.example.eighthlesson.model.CardSource;
-import com.example.eighthlesson.model.CardSourceImpl;
+
+import com.example.eighthlesson.model.CardSourceResponse;
+import com.example.eighthlesson.model.CardsSourceRemoteImpl;
 import com.example.eighthlesson.observe.Observer;
 import com.example.eighthlesson.observe.Publisher;
-
-import java.util.Calendar;
 
 public class SocialNetworkFragment extends Fragment {
 
@@ -57,11 +56,7 @@ public class SocialNetworkFragment extends Fragment {
         return  new SocialNetworkFragment();
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        data  = new CardSourceImpl(getResources()).init();
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
@@ -72,12 +67,20 @@ public class SocialNetworkFragment extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.recyclerView);
+        /*data  = new CardSourceLocalImpl(getResources()).init(new CardSourceResponse() {
+            @Override
+            public void initialized(CardSource cardSource) {
+
+            }
+        });*/
+        data = new CardsSourceRemoteImpl().init(cardSource -> adapter.notifyDataSetChanged());
+        adapter.setDataSource(data);
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SocialNetworkAdapter(data, this);
+        adapter = new SocialNetworkAdapter( this);
         recyclerView.setAdapter(adapter);
 
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -87,13 +90,7 @@ public class SocialNetworkFragment extends Fragment {
         recyclerView.setItemAnimator(defaultItemAnimator);
 
 
-        adapter.setOnMyOnClickListener(new MyOnClickListener() {
-
-            @Override
-            public void onMyClick(View view, int position) {
-                Toast.makeText(getContext(),"Тяж обработка для " +position,Toast.LENGTH_SHORT).show();
-            }
-        });
+        adapter.setOnMyOnClickListener((view1, position) -> Toast.makeText(getContext(),"Тяж обработка для " +position,Toast.LENGTH_SHORT).show());
 
 
 
@@ -139,7 +136,7 @@ public class SocialNetworkFragment extends Fragment {
     }
 
     @Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         requireActivity().getMenuInflater().inflate(R.menu.card_menu,menu);
     }
@@ -155,13 +152,10 @@ public class SocialNetworkFragment extends Fragment {
 
                 navigation.addFragment(CardUpdateFragment.newInstance(
                         data.getCardData(position)),true);
-                publisher.subscribe(new Observer(){
-                    @Override
-                    public void updateState(CardData cardData){
-                     data.updateCardData(position,cardData);
-                        adapter.notifyItemChanged(position);
+                publisher.subscribe(cardData -> {
+                 data.updateCardData(position,cardData);
+                    adapter.notifyItemChanged(position);
 
-                    }
                 });
 
 

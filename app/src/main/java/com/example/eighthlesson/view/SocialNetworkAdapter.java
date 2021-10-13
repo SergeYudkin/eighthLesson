@@ -21,15 +21,19 @@ import com.example.eighthlesson.model.CardSource;
 
 public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdapter.MyViewHolder> {
 
+    public void setDataSource(CardSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
+    }
+
     private CardSource dataSource;
 
 
 
     private TextView data;
 
-    public SocialNetworkAdapter(@NonNull CardSource dataSource, Fragment fragment) {
+    public SocialNetworkAdapter(Fragment fragment) {
 
-        this.dataSource = dataSource;
         this.fragment = fragment;
     }
     private MyOnClickListener listener;

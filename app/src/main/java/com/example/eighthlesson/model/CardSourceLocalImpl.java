@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CardSourceImpl implements CardSource {
+public class CardSourceLocalImpl implements CardSource {
 
     private final List<CardData> dataSource;
     private final Resources resources;
 
-    public CardSourceImpl(Resources resources) {
+    public CardSourceLocalImpl(Resources resources) {
         dataSource = new ArrayList<>();
         this.resources = resources;
     }
@@ -56,7 +56,7 @@ public class CardSourceImpl implements CardSource {
         dataSource.clear();
     }
 
-    public CardSourceImpl init(CardSourceResponse cardSourceResponse){
+    public CardSourceLocalImpl init(CardSourceResponse cardSourceResponse){
 
 
         String[] titles = resources.getStringArray(R.array.titles);
