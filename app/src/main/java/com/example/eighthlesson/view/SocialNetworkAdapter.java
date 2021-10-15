@@ -27,6 +27,7 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
     }
 
     private CardSource dataSource;
+    private OnItemClickListener itemClickListener;
 
 
 
@@ -41,9 +42,7 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
     private final Fragment fragment;
     private int menuContextClickPosition;
 
-    public void setOnMyOnClickListener(MyOnClickListener listener){
-        this.listener = listener;
-    }
+
 
     public  void  setData (CardSource dataSource){
         this.dataSource = dataSource; }
@@ -79,6 +78,14 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
         return dataSource.size();
     }
 
+    public void SetOnItemClickListener(OnItemClickListener itemClickListener){
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view , int position);
+    }
+
     public int getMenuContextClickPosition() {
         return menuContextClickPosition;
     }
@@ -91,6 +98,8 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
          CheckBox like;
          CardView cardView;
          TextView date;
+
+
 
 
         public MyViewHolder(@NonNull View itemView) {

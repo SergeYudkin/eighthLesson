@@ -24,6 +24,7 @@ import com.example.eighthlesson.R;
 import com.example.eighthlesson.model.CardData;
 import com.example.eighthlesson.model.CardSource;
 
+import com.example.eighthlesson.model.CardSourceLocalImpl;
 import com.example.eighthlesson.model.CardSourceResponse;
 import com.example.eighthlesson.model.CardsSourceRemoteImpl;
 import com.example.eighthlesson.observe.Observer;
@@ -67,16 +68,32 @@ public class SocialNetworkFragment extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        /*data  = new CardSourceLocalImpl(getResources()).init(new CardSourceResponse() {
-            @Override
-            public void initialized(CardSource cardSource) {
+        initRecyclerView(recyclerView, data);
+        if (false) {
+            data = new CardSourceLocalImpl(getResources()).init(new CardSourceResponse() {
+                @Override
+                public void initialized(CardSource cardSource) {
 
-            }
-        });*/
-        data = new CardsSourceRemoteImpl().init(cardSource -> adapter.notifyDataSetChanged());
+                }
+            });
+        } else {
+
+            data = new CardsSourceRemoteImpl().init(new CardSourceResponse() {
+                @Override
+                public void initialized(CardSource cardSource) {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
         adapter.setDataSource(data);
-        recyclerView.setHasFixedSize(true);
+        return view;
+    }
 
+    private  void initRecyclerView(RecyclerView recyclerView, CardSource data){
+
+
+
+        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -90,15 +107,21 @@ public class SocialNetworkFragment extends Fragment {
         recyclerView.setItemAnimator(defaultItemAnimator);
 
 
-        adapter.setOnMyOnClickListener((view1, position) -> Toast.makeText(getContext(),"Тяж обработка для " +position,Toast.LENGTH_SHORT).show());
-
-
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL);
-        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator));
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator, null));
         recyclerView.addItemDecoration(dividerItemDecoration);
-        return view;
+
+        adapter.SetOnItemClickListener(new SocialNetworkAdapter.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu,@NonNull MenuInflater inflater){
         inflater.inflate(R.menu.fragment_menu,menu);
@@ -107,23 +130,17 @@ public class SocialNetworkFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch ( item.getItemId()){
             case R.id.action_add:
-                /*  data.addCardData(new CardData("Новая"+data.size(),
-                        "Описание"+data.size(),
-                        R.drawable.pic7,false,Calendar.getInstance().getTime()));
-                adapter.notifyItemInserted(data.size()-1);
-                //recyclerView.scrollToPosition(data.size()-1);  резкий скролл до новой позиции
-                recyclerView.smoothScrollToPosition(data.size()-1); // плавный скролл (относительно плавный)*/
-
                 navigation.addFragment(CardUpdateFragment.newInstance(),true);
-                publisher.subscribe(new Observer(){
-                    @Override
-                    public void updateState(CardData cardData){
-                        data.addCardData(cardData);
-                        adapter.notifyItemInserted(data.size());
+                  publisher.subscribe(new Observer() {
+                      @Override
+                      public void updateState(CardData cardData) {
+                          data.addCardData(cardData);
+                          adapter.notifyItemInserted(data.size()-1);
+                      }
+                  });
 
-                    }
-                });
-
+                //recyclerView.scrollToPosition(data.size()-1);  резкий скролл до новой позиции
+              //  recyclerView.smoothScrollToPosition(data.size()-1); // плавный скролл (относительно плавный)
 
                 return true;
             case R.id.action_clear:
@@ -136,7 +153,7 @@ public class SocialNetworkFragment extends Fragment {
     }
 
     @Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         requireActivity().getMenuInflater().inflate(R.menu.card_menu,menu);
     }
@@ -150,11 +167,13 @@ public class SocialNetworkFragment extends Fragment {
                /* data.getCardData(position).setTitle("Обновили"+position);
                 adapter.notifyItemChanged(position);*/
 
-                navigation.addFragment(CardUpdateFragment.newInstance(
-                        data.getCardData(position)),true);
-                publisher.subscribe(cardData -> {
-                 data.updateCardData(position,cardData);
-                    adapter.notifyItemChanged(position);
+                navigation.addFragment(CardUpdateFragment.newInstance(data.getCardData(position)),true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateState(CardData cardData) {
+                        data.updateCardData(position, cardData);
+                        adapter.notifyItemChanged(position);
+                    }
 
                 });
 
@@ -163,7 +182,6 @@ public class SocialNetworkFragment extends Fragment {
             case R.id.action_delete:
                 data.deleteCardData(position);
                 adapter.notifyItemRemoved(position);
-
 
                 return true;
         }
